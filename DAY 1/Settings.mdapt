@@ -62,4 +62,4 @@ vim /etc/crontab
 #IPSEC Strongswan
 apt install strongswan -y
 
-
+ 
