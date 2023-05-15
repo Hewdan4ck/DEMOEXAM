@@ -3,7 +3,7 @@ vim /etc/network/interfaces
 
 auto [Интерфейс]
 iface [Интерфейс] inet static
-address [ip-адрес]
+address [ip-адрес]/[Префикс]
 gateway [ip-адрес шлюза]
 
 #Настройка IP на CentOS
