@@ -37,3 +37,7 @@ ip route add [удаленная сеть]/[префикс] via [виртуал�
 :wq
 
 chmod +x /etc/gre.up
+
+vim /etc/crontab
+@reboot		root	/etc/gre.up
+:wq
