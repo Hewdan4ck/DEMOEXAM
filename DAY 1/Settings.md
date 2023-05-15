@@ -21,3 +21,7 @@ table ip nat {
 	ip saddr [Диапазон натируемых адресов] oif "[Выходной интерфейс]" masquerade;
 	}
 }
+
+//Применение и проверка правил nftables 
+nft -f /etc/nftables.conf
+nft list ruleset
