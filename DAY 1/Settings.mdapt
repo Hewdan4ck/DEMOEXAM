@@ -23,6 +23,22 @@ table ip nat {
 }
 :wq
 
+#NAT для ISP, если понадобится устанавливать пакеты с инета
+vim /etc/nftables.conf
+table ip nat {
+	chain postrouting {
+		type nat hook postrouting priority 0; policy accept;
+		ip saddr 0.0.0.0/0 oif "[Выходной интерфейс]" masquerade;
+	}
+}
+:wq
+
+#Nameserver для установки пакетов с инета
+echo nameserver 8.8.8.8 > /etc/resolv.conf
+
+#Установка репозитория для дебиана
+echo http://mirror.yandex.ru/debian bullseye main contrib
+
 #Применение и проверка правил nftables 
 nft -f /etc/nftables.conf
 nft list ruleset
