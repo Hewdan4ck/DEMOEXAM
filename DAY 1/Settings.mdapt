@@ -37,7 +37,7 @@ table ip nat {
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 
 #Установка репозитория для дебиана
-echo http://mirror.yandex.ru/debian bullseye main contrib >> /etc/apt/sources.list
+echo deb http://mirror.yandex.ru/debian bullseye main contrib >> /etc/apt/sources.list
 
 #Применение и проверка правил nftables 
 nft -f /etc/nftables.conf
