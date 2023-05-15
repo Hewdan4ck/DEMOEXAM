@@ -17,8 +17,8 @@ echo [Hostname] > /etc/hostname
 vim /etc/nftables.conf
 table ip nat {
 	chain postrouting {
-	type nat hook postrouting priority 0; policy accept;
-	ip saddr [Диапазон натируемых адресов] oif "[Выходной интерфейс]" masquerade;
+		type nat hook postrouting priority 0; policy accept;
+		ip saddr [Диапазон натируемых адресов] oif "[Выходной интерфейс]" masquerade;
 	}
 }
 :wq
@@ -41,3 +41,6 @@ chmod +x /etc/gre.up
 vim /etc/crontab
 @reboot		root	/etc/gre.up
 :wq
+
+
+
