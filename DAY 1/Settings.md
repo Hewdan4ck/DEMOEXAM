@@ -31,9 +31,9 @@ nft list ruleset
 vim /etc/gre.up
 #!/bin/bash
 ip tunnel add tun1 mode gre local [локальный IP] remote [удаленный IP]
-ip addr add [виртуальный адрес локального роутера (10.5.5.1)]/30 dev tun1
+ip addr add [виртуальный ip локального роутера (10.5.5.1)]/30 dev tun1
 ip link set tun1 up
-ip route add [удаленная сеть]/[префикс] via [виртуальный адрес удаленного роутера (например, 10.5.5.2)]
+ip route add [удаленная сеть]/[префикс] via [виртуальный ip удаленного роутера (например, 10.5.5.2)]
 :wq
 
 chmod +x /etc/gre.up
