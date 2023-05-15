@@ -5,6 +5,7 @@ auto [Интерфейс]
 iface [Интерфейс] inet static
 address [ip-адрес]
 gateway [ip-адрес шлюза]
+:wq
 
 #Настройка IP на CentOS
 nmtui
@@ -14,14 +15,25 @@ echo [Hostname] > /etc/hostname
 
 #NAT
 vim /etc/nftables.conf
-
 table ip nat {
 	chain postrouting {
 	type nat hook postrouting priority 0; policy accept;
 	ip saddr [Диапазон натируемых адресов] oif "[Выходной интерфейс]" masquerade;
 	}
 }
+:wq
 
-//Применение и проверка правил nftables 
+#Применение и проверка правил nftables 
 nft -f /etc/nftables.conf
 nft list ruleset
+
+#GRE
+vim /etc/gre.up
+#!/bin/bash
+ip tunnel add tun1 mode gre local [локальный IP] remote [удаленный IP]
+ip addr add [виртуальный адрес локального роутера (10.5.5.1)]/30 dev tun1
+ip link set tun1 up
+ip route add [удаленная сеть]/[префикс] via [виртуальный адрес удаленного роутера (например, 10.5.5.2)]
+:wq
+
+chmod +x /etc/gre.up
