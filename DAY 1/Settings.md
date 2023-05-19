@@ -31,6 +31,7 @@ table ip nat {
 	}
 }
 :wq
+systemctl enable --now nftables
 
 #NAT для ISP, если понадобится устанавливать пакеты с инета
 vim /etc/nftables.conf
@@ -41,6 +42,7 @@ table ip nat {
 	}
 }
 :wq
+systemctl enable --now nftables
 
 #Nameserver для установки пакетов с инета
 echo nameserver 8.8.8.8 > /etc/resolv.conf
