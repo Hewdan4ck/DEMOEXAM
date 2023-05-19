@@ -77,6 +77,7 @@ vim /etc/ipsec.conf
 conn vpn
 	auto=start
 	type=tunnel
+	authby=secret
 	left=[локальный ip]
 	right=[удаленный ip]
 	leftsubnet=0.0.0.0/0
@@ -85,4 +86,7 @@ conn vpn
 	rightprotoport=gre
 	ike=aes128-sha256-modp3072
 	esp=aes128-sha256
- 
+:wq
+
+vim /etc/ipsec.secrets
+[локальный ip] [удаленный ip] : PSK "P@ssw0rd"
