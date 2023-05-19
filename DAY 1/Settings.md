@@ -55,7 +55,7 @@ apt update
 nft -f /etc/nftables.conf
 nft list ruleset
 
-#GRE
+#GRE на RTR
 vim /etc/gre.up
 #!/bin/bash
 ip tunnel add tun1 mode gre local [локальный IP] remote [удаленный IP]
@@ -70,7 +70,7 @@ vim /etc/crontab
 @reboot		root	/etc/gre.up
 :wq
 
-#IPSEC Strongswan
+#IPSEC Strongswan на RTR
 apt install strongswan -y
 
 vim /etc/ipsec.conf
@@ -90,3 +90,30 @@ conn vpn
 
 vim /etc/ipsec.secrets
 [локальный ip] [удаленный ip] : PSK "P@ssw0rd"
+
+#Настройка фильтрации VPN на RTR
+vim /etc/nftables.conf
+Дописываем
+table inet filter {
+	chain input {
+		type filter hook input priority 0;
+		udp dport 53 accept; //На правом роутере не требуется
+		tcp dport 80 accept;
+		tcp dport 443 accept;
+		ct state {established,related} accept;
+		ip protocol gre accept;
+		ip protocol icmp accept;
+		ip protocol ospf accept;
+		udp dport 500 accept;
+		ip saddr [локальная подсеть] accept;
+		ip saddr [удаленная подсеть] accept;
+		tcp dport 2244 accept;
+		ip version 4 drop;
+	}
+	chain forward {
+		type filter hook forward priority 0;
+	}
+	chain output {
+		type filter hoot output priority 0;
+	}
+}
