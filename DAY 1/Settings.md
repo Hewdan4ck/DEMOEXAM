@@ -7,6 +7,15 @@ address [ip-адрес]
 gateway [ip-адрес шлюза]
 :wq
 
+#Перенаправления пакетов
+vim /etc/sysctl.conf
+Нужно раскомментировать или дописать
+net.ipv4.ip_forward=1
+
+echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+sysctl -p
+
+
 #Настройка IP на CentOS
 nmtui
 
