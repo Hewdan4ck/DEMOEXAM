@@ -73,4 +73,16 @@ vim /etc/crontab
 #IPSEC Strongswan
 apt install strongswan -y
 
+vim /etc/ipsec.conf
+conn vpn
+	auto=start
+	type=tunnel
+	left=[локальный ip]
+	right=[удаленный ip]
+	leftsubnet=0.0.0.0/0
+	rightsubnet=0.0.0.0/0
+	leftprotoport=gre
+	rightprotoport=gre
+	ike=aes128-sha256-modp3072
+	esp=aes128-sha256
  
