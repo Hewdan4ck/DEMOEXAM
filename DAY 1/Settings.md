@@ -117,6 +117,8 @@ table inet filter {
 		type filter hoot output priority 0;
 	}
 }
+:wq
+nft -f /etc/nftables.conf
 
 #Проброс портов
 vim /etc/nftables.conf
@@ -130,7 +132,10 @@ table ip nat {
 		tcp dport 2244 dnat to [локальный ip устройства для проброса]:22; //На правом проброс на 2222
 	}
 }
+:wq!
+nft -f /etc/nftables.conf
 
-
+#Проверка порта
+ssh -l user [ip] -p 2244 //На правом 2222 
 
 
