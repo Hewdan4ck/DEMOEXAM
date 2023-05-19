@@ -107,7 +107,7 @@ table inet filter {
 		udp dport 500 accept;
 		ip saddr [локальная подсеть] accept;
 		ip saddr [удаленная подсеть] accept;
-		tcp dport 2244 accept;
+		tcp dport 2244 accept; //На правом роутере 2222
 		ip version 4 drop;
 	}
 	chain forward {
@@ -117,3 +117,20 @@ table inet filter {
 		type filter hoot output priority 0;
 	}
 }
+
+#Проброс портов
+vim /etc/nftables.conf
+Дописываем
+table ip nat {
+	chain postrouting {
+		...
+	}
+	chain prerouting {
+		type nat hook prerouting priority 0; policy accept;
+		tcp dport 2244 dnat to [локальный ip устройства для проброса]:22; //На правом проброс на 2222
+	}
+}
+
+
+
+
