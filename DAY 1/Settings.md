@@ -152,4 +152,10 @@ vtysh
 
 RTR-R# conf t
 RTR-R(config)# router ospf 1
-RTR-R(config-router)# 
+RTR-R(config-router)# network [сеть gre]/30 area 0
+RTR-R(config-router)# network [локальная сеть]/24 area 0
+RTR-R(config-router)# end
+RTR-R# show ip ospf nei
+RTR-R# show ip ospf route
+RTR-R# wr
+RTR-R# exit
