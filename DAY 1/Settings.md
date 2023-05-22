@@ -58,7 +58,7 @@ nft list ruleset
 #GRE на RTR
 vim /etc/gre.up
 #!/bin/bash
-ip tunnel add tun1 mode gre local [локальный IP] remote [удаленный IP]
+ip tunnel add tun1 mode gre local [локальный IP] remote [удаленный IP] ttl 64
 ip addr add [виртуальный ip локального роутера (10.5.5.1)]/30 dev tun1
 ip link set tun1 up
 ip route add [удаленная сеть]/[префикс] via [виртуальный ip удаленного роутера (например, 10.5.5.2)]
@@ -138,4 +138,18 @@ nft -f /etc/nftables.conf
 #Проверка порта
 ssh -l user [ip] -p 2244 //На правом 2222 
 
+#Динамическая маршрутизация
+vim /etc/gre.up
+#ip route add 192.168.200.0/24 via 10.5.5.1
+:wq
+reboot
+apt install frr -y
+vim /etc/frr/daemons
+ospdfd=yes
+:wq
+systemctl restart frr
+vtysh
 
+RTR-R# conf t
+RTR-R(config)# router ospf 1
+RTR-R(config-router)# 
