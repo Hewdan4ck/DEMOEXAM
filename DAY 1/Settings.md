@@ -159,3 +159,51 @@ RTR-R# show ip ospf nei
 RTR-R# show ip ospf route
 RTR-R# wr
 RTR-R# exit
+
+#DNS ISP
+apt install bind9 -y
+vim /etc/named.conf.options
+options {
+	directory "/var/cache/bind";
+	dnssec-validation auto;	
+	allow-query { any; };
+	recursion yes;
+	listen-on { any; };
+};
+:wq
+vim /etc/bind/named.conf.default-zones
+zone "." {
+	type hint;
+	file "/usr/share/dns/root.hints";
+};
+
+zone "demo.wsr" {
+	type master;
+	file "/etc/bind/demo.wsr";
+	forwarders {};
+};
+:wq
+cp /etc/bind/db.local /etc/bind/demo.wsr
+vim /etc/bind/demo.wsr
+$TTL 604800
+@	IN	SOA	demo.wsr. root.demo.wsr. (
+				2
+				604800
+				86400
+				2419200
+				604800 )
+@	IN	NS	demo.wsr.
+@	IN	A	3.3.3.1
+isp	IN	A	3.3.3.1
+www	IN	A	4.4.4.100
+www	IN	A	5.5.5.100
+internet	IN	CNAME	isp.demo.wsr.
+
+$ORIGIN	int.demo.wsr.
+@	IN	NS	int.demo.wsr.
+@	IN	A	4.4.4.100
+:wq
+named-checkconf		//Проверка конфиги
+named-checkconf -z 	//Проверка зон
+systemctl restart bind9
+host demo.wsr 3.3.3.1	//На роутерах	
