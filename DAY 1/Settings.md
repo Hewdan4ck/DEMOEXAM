@@ -209,3 +209,8 @@ named-checkconf -z 	//Проверка зон
 systemctl restart bind9
 host demo.wsr 3.3.3.1	//На роутерах	
 host int.demo.wsr 3.3.3.1
+
+#Проверка DNS windows
+host www.demo.wsr 3.3.3.1
+host srv.int.demo.wsr 4.4.4.100
+host ntp.int.demo.wsr 4.4.4.100
