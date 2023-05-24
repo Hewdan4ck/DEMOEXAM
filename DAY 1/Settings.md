@@ -152,7 +152,7 @@ systemctl restart frr
 vtysh
 
 RTR-R# conf t
-RTR-R(config)# router ospf 1
+RTR-R(config)# router ospf
 RTR-R(config-router)# network [сеть gre]/30 area 0
 RTR-R(config-router)# network [локальная сеть]/24 area 0
 RTR-R(config-router)# end
