@@ -130,6 +130,7 @@ table ip nat {
 	chain prerouting {
 		type nat hook prerouting priority 0; policy accept;
 		tcp dport 2244 dnat to [локальный ip устройства для проброса]:22; //На правом проброс на 2222
+		iifname "[Внешний интерфейс]" udp dport 53 dnat to 192.168.200.200:53; //Только на левом роутере
 	}
 }
 :wq!
