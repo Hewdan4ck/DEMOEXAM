@@ -214,3 +214,17 @@ host int.demo.wsr 3.3.3.1
 host www.demo.wsr 3.3.3.1
 host srv.int.demo.wsr 4.4.4.100
 host ntp.int.demo.wsr 4.4.4.100
+
+#NTP ISP
+apt install chrony -y
+vim /etc/chrony/chrony.conf
+confdir /etc/chrony/conf.d
+server 127.0.0.1
+allow 5.5.5.100/32
+allow 4.4.4.100/32
+allow 3.3.3.10/32
+local stratum 3
+...
+:wq
+systemctl restart chronyd
+chronyc sources
