@@ -226,6 +226,16 @@ allow 3.3.3.10/32
 local stratum 3
 ...
 :wq
-systemctl restart chronyd
+systemctl restart chrony
 chronyc sources
 chronyc clients
+
+#NTP RTR
+apt install chrony -y
+vim /etc/chrony/chrony.conf
+confdir /etc/chrony/conf.d
+server 192.168.200.200 iburst //IP SRV
+...
+systemctl restart chrony
+chronyc sources
+:wq
