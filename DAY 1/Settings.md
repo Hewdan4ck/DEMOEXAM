@@ -228,3 +228,4 @@ local stratum 3
 :wq
 systemctl restart chronyd
 chronyc sources
+chronyc clients
