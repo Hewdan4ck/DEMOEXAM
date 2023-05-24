@@ -163,7 +163,7 @@ RTR-R# exit
 
 #DNS ISP
 apt install bind9 -y
-vim /etc/named.conf.options
+vim /etc/bind/named.conf.options
 options {
 	directory "/var/cache/bind";
 	dnssec-validation auto;	
