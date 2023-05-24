@@ -236,6 +236,6 @@ vim /etc/chrony/chrony.conf
 confdir /etc/chrony/conf.d
 server 192.168.200.200 iburst //IP SRV
 ...
+:wq
 systemctl restart chrony
 chronyc sources
-:wq
