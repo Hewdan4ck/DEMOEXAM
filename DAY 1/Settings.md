@@ -248,3 +248,5 @@ vim /etc/fstab
 mkdir /opt/share
 echo "username=Administrator
 password=P@ssw0rd" > /etc/pass
+mount -a
+dh -h
