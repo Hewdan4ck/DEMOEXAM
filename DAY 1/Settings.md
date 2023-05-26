@@ -254,7 +254,7 @@ df -h
 #Nameserver на всех устройствах, кроме ISP и Windows клиентах
 echo nameserver 192.168.200.200 > /etc/resolv.conf //IP SRV
 
-#Docker WEB-L
+#Docker WEB-L и WEB-R 
 //Для начала нужно добавить второй CD-ROM с диском docker.iso
 
 mount /dev/sr1 /media/cdrom
@@ -264,8 +264,8 @@ cd
 tar -xvf appdockerdemo.tar.gz
 apt install docker docker.io -y
 docker image load -i appdocker0.zip
-docker run -d appdocker0:latest
+//docker run -d appdocker0:latest
+//docker kill [Имя докера в конце docker ps]
+docker run -d -p 80:5000 appdocker0	//80 порт внешний, 5000 порт внутренний
 docker image ls
 docker ps
-docker kill [Имя докера в конце docker ps]
-docker run -d -p 80:5000 appdocker0	//80 порт внешний, 5000 порт внутренний
