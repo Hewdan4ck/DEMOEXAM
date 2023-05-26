@@ -265,4 +265,7 @@ tar -xvf appdockerdemo.tar.gz
 apt install docker docker.io -y
 docker image load -i appdocker0.zip
 docker run -d appdocker0:latest
+docker image ls
 docker ps
+docker kill [Имя докера в конце docker ps]
+docker run -d -p 80:5000 appdocker0	//80 порт внешний, 5000 порт внутренний
