@@ -245,3 +245,6 @@ apt install cifs-utils -y
 vim /etc/fstab
 ...
 //192.168.200.200/shares /opt/share cifs defaults,credentials=/etc/pass,_netdev 0 0
+mkdir /opt/share
+echo "username=Administrator
+password=P@ssw0rd" > /etc/pass
