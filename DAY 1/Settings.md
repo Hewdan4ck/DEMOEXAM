@@ -240,5 +240,8 @@ server 192.168.200.200 iburst //IP SRV
 systemctl restart chrony
 chronyc sources
 
-#Share WEB-L и WEB-R
+#SMB client WEB-L и WEB-R
 apt install cifs-utils -y
+vim /etc/fstab
+...
+//192.168.200.200/shares /opt/share cifs defaults,credentials=/etc/pass,_netdev 0 0
