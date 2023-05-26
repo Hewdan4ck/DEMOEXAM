@@ -250,3 +250,19 @@ echo "username=Administrator
 password=P@ssw0rd" > /etc/pass
 mount -a
 df -h
+
+#Nameserver на всех устройствах, кроме ISP и Windows клиентах
+echo nameserver 192.168.200.200 > /etc/resolv.conf //IP SRV
+
+#Docker WEB-L
+//Для начала нужно добавить второй CD-ROM с диском docker.iso
+
+mount /dev/sr1 /media/cdrom
+cd /media/cdrom
+cp appdockerdemo.tar.gz /root/
+cd
+tar -xvf appdockerdemo.tar.gz
+apt install docker docker.io -y
+docker image load -i appdocker0.zip
+docker run -d appdocker0:latest
+docker ps
