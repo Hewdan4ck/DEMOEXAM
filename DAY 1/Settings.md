@@ -239,3 +239,6 @@ server 192.168.200.200 iburst //IP SRV
 :wq
 systemctl restart chrony
 chronyc sources
+
+#Сертификаты на WEB-L и WEB-R
+apt install cifs-utils -y
