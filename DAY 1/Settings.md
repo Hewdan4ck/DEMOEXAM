@@ -269,3 +269,21 @@ docker image load -i appdocker0.zip
 docker run -d -p 80:5000 appdocker0	//80 порт внешний, 5000 порт внутренний
 docker image ls
 docker ps
+
+#Haproxy на RTR aka отказоустойчивость
+Frontend web
+	bind [ip RTR]:80
+	bind [ip RTR]:443 ssl crt /root/www/www.pem
+	http-request redirect scheme https unless { ssl_fc }
+	default_backend back
+Backend back
+	balance roundrobin
+	option httpchk
+	server web-l [ip WEB-L]:80 check
+	server web-r [ip WEB-R]:80 check
+	
+#Преобразование www.pfx на RTR
+mv /home/user/www.pfx /root/
+openssl pkcs12 -in www.pfx -out www.pem -nodes
+mkdir www
+mv www.pem /root/www/www.pem
