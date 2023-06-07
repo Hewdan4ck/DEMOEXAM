@@ -287,3 +287,6 @@ mv /home/user/www.pfx /root/
 openssl pkcs12 -in www.pfx -out www.pem -nodes
 mkdir www
 mv www.pem /root/www/www.pem
+
+#Передача cer на CLI
+scp /home/user/RootCA.cer user@3.3.3.1:RootCA.cer //На RTR-L
