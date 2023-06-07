@@ -283,6 +283,7 @@ Backend back
 	option httpchk
 	server web-l [ip WEB-L]:80 check
 	server web-r [ip WEB-R]:80 check
+:wq
 	
 #Преобразование www.pfx на RTR
 mv /home/user/www.pfx /root/
