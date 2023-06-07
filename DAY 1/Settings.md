@@ -271,6 +271,8 @@ docker image ls
 docker ps
 
 #Haproxy на RTR aka отказоустойчивость
+apt install haproxy -y
+vim /etc/haproxy/haproxy.cfg
 Frontend web
 	bind [ip RTR]:80
 	bind [ip RTR]:443 ssl crt /root/www/www.pem
