@@ -114,7 +114,7 @@ table inet filter {
 		type filter hook forward priority 0;
 	}
 	chain output {
-		type filter hoot output priority 0;
+		type filter hook output priority 0;
 	}
 }
 :wq
