@@ -166,7 +166,10 @@ apt install bind9 -y
 vim /etc/bind/named.conf.options
 options {
 	directory "/var/cache/bind";
-	dnssec-validation auto;	
+ 	forwarders {
+                4.4.4.100;
+        };
+	dnssec-validation no;	
 	allow-query { any; };
 	recursion yes;
 	listen-on { any; };
