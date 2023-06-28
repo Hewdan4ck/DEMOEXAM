@@ -100,6 +100,7 @@ table inet filter {
 		udp dport 53 accept; //На правом роутере не требуется
 		tcp dport 80 accept;
 		tcp dport 443 accept;
+  		tcp dport 22 accept;
 		ct state {established,related} accept;
 		ip protocol gre accept;
 		ip protocol icmp accept;
